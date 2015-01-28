@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title%}
+MPIL - Contact
+{% endblock %}
+                        <!-- content -->
+{% block content %}
+                        
+<div class="col-sm-12" id="featured">   
+   <div class="page-header text-muted">
+      Publications 
+   </div> 
+</div>
+
+<div class="row">
+    <div class="col-sm-10">
+        <!-- Add pubmed search term after "?term=" -->
+        <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=" target="_blank">PubMed search</a>
+    </div>
+</div>
+
+<br><br>             
+{% for obj in pubs %}
+    {% if obj.search_term == None %}
+        <!--/top story-->
+        <div class="row">    
+            <div class="col-sm-10">
+                {{ obj.authors}}.
+<!--            ({{ obj.year }})-->
+                <strong>{{ obj.title }}</strong>
+                <i>{{ obj.journal }}</i>
+                {{ obj.volume_issue_pages }}
+            </div>
+        </div>
+<br>
+{% endif %}
+{% endfor %}
+                      
+{% endblock %} 
