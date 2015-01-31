@@ -5,3 +5,4 @@ static
 base.html
 db.sqlite3
 manage.py
+.gitignore
