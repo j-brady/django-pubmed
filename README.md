@@ -1,5 +1,5 @@
 # django-pubmed
-Render pubmed search results into html publication list 
+An easy way to render pubmed search results into an html publication list 
 
 ## How to use
 clone the repo and add the publications folder to your installed apps in your settings.py file.
