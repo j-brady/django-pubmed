@@ -1,38 +1,49 @@
 {% extends "base.html" %}
 {% block title%}
-MPIL - Contact
+Pubications
 {% endblock %}
                         <!-- content -->
 {% block content %}
-                        
-<div class="col-sm-12" id="featured">   
-   <div class="page-header text-muted">
-      Publications 
-   </div> 
-</div>
-
-<div class="row">
-    <div class="col-sm-10">
-        <!-- Add pubmed search term after "?term=" -->
-        <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=" target="_blank">PubMed search</a>
-    </div>
-</div>
-
-<br><br>             
-{% for obj in pubs %}
-    {% if obj.search_term == None %}
-        <!--/top story-->
-        <div class="row">    
-            <div class="col-sm-10">
-                {{ obj.authors}}.
-<!--            ({{ obj.year }})-->
-                <strong>{{ obj.title }}</strong>
-                <i>{{ obj.journal }}</i>
-                {{ obj.volume_issue_pages }}
+<div id="page-content-wrapper" >
+    <div class="container-fluid">
+        <div class="row" style="position:fixed;left:60%">
+            <div class="col-sm-12" id="featured"  >   
+                <div class="page-header text-muted">
+                    <h1>Publications</h1>
+                </div>
+                <!-- Making list of search names --> 
+                {% for term in search_terms %}
+                    <a href="#{{term.search_name}}">{{term.search_name}}&nbsp;|</a>
+                {% endfor %}
             </div>
         </div>
-<br>
-{% endif %}
-{% endfor %}
-                      
+        <div class="row" style="">
+            {% for term in search_terms %}
+            <h2 id="{{term.search_name}}">{{term.search_name}}</h2>
+            <div class="row">
+                <div class="col-sm-7">
+                <!-- Add pubmed search term after "?term=" -->
+                    <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={{term.search_term}}" target="_blank">PubMed search</a>
+                </div>
+            </div>
+            <br><br>             
+            {% for obj in pubs %}
+                {% if obj.search_term == term.search_term %}
+                <!--/top story-->
+                <div class="row">    
+                    <div class="col-sm-7">
+                        {{ obj.authors}}.
+                        <strong>{{ obj.title }}</strong>
+                        <i>{{ obj.journal }}</i>
+                        {{ obj.volume_issue_pages }}
+                    </div>
+                </div>
+                <br>
+                {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+<!-- End page content wrapper -->
+</div>                      
 {% endblock %} 

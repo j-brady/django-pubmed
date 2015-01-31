@@ -1,0 +1,5 @@
+*.pyc
+djangoPubMed
+staticfiles
+static
+base.html

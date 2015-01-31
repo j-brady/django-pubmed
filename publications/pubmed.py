@@ -2,7 +2,7 @@ from Bio import Entrez, Medline
 
 def GetPubMedEntries(email,search_term):
   Entrez.email = email 
-  handle = Entrez.esearch(db="pubmed", term=search_term, retmax=500)
+  handle = Entrez.esearch(db="pubmed", term=search_term, retmax=1000)
   record = Entrez.read(handle)
   idlist = record["IdList"]
 
