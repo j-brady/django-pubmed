@@ -1,7 +1,0 @@
-*.pyc
-djangoPubMed
-staticfiles
-static
-base.html
-db.sqlite3
-manage.py
