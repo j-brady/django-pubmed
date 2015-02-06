@@ -9,17 +9,19 @@ def get_pubmed_entry(modeladmin,request,queryset):
     records = GetPubMedEntries(email,search_term)
 
     for record in records:
-      author_list = convert_to_string(record,"AU")
-      title_temp = convert_to_string(record,"TI")
+      author_list  = convert_to_string(record,"AU")
+      title_temp   = convert_to_string(record,"TI")
       journal_temp = convert_to_string(record,"SO")
-      year_temp  =  ''
-      a = Publication(authors=author_list,year=year_temp,title=title_temp,journal=journal_temp,volume_issue_pages='',search_term=search_term)
+      year_temp    =  ''
+      pmid_temp    = convert_to_string(record,"PMID")
+      a = Publication(authors=author_list,year=year_temp,title=title_temp,journal=journal_temp,volume_issue_pages='',search_term=search_term,pmid=pmid_temp)
       # Save changes to the database if entry is unique - This is very inefficient though
       check_unique(new_publication=a)
       
 def check_unique(new_publication):
   # Function to check that entries are unique
-  pubs = Publication.objects.all()
+  # Need to filter against search terms to.
+  pubs   = Publication.objects.all()
   titles = [pub.title for pub in pubs]
   if new_publication.title in titles:
     pass

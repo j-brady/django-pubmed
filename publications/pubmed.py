@@ -36,4 +36,5 @@ if __name__ == "__main__":
     #r = record.get("AU","?")
     #string = ''
     print(convert_to_string(record,"AU"))
+    print(convert_to_string(record,"PMID"))
 

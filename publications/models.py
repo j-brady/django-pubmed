@@ -8,6 +8,8 @@ class Publication(models.Model):
   title   = models.CharField(max_length=500,blank=True)
   journal = models.CharField(max_length=500,blank=True)
   volume_issue_pages = models.CharField(max_length=100,blank=True)
+  # Pubmed ID field
+  pmid    = models.CharField(max_length=20)
   
   search_term =  models.CharField(blank=True,max_length=500)
 
